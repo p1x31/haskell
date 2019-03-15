@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Randomly iterate through a subset of machines in UG04
+# You must be in a School machine (such as tinky-winky), or
+# or have a School active vpn connection.
+
+# You can install this script by typing:
+#
+#     curl 'https://raw.githubusercontent.com/uob-fp/fp/master/auxiliary/ctl/install' | bash -
+
+while true; do
+        suffix=$((10 + RANDOM % 50))
+        machine="cca-ug04-130${suffix}.cs.bham.ac.uk"
+        echo "Trying $machine"
+	if ssh -o StrictHostKeyChecking=no $machine
+        then
+            break
+        else
+            continue
+	fi
+done
